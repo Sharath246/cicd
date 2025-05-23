@@ -2,9 +2,9 @@ package com.devops.cicd.User.Service;
 
 import java.util.Optional;
 
+import com.devops.cicd.User.DTO.UserDataDTO;
+import com.devops.cicd.Utils.Constants;
 import org.springframework.stereotype.Service;
-
-import com.devops.cicd.User.DTO.LoginDTO;
 import com.devops.cicd.User.DTO.RegisterDTO;
 import com.devops.cicd.User.Entity.User;
 import com.devops.cicd.User.Repository.UserRepository;
@@ -33,8 +33,28 @@ public class UserService {
         return userRepo.findByEmail(email);
     }
 
-    public boolean login(String email, String password){
-        Optional<User> user = getUserByEmail(email);
-        return user.map(value -> value.getPassword().equals(password)).orElse(false);
+    public String login(String email, String password){
+        Optional<User> person = getUserByEmail(email);
+        if(person.isPresent())
+        {
+            User user = person.get();
+            if(user.getPassword().equals(password))
+                return Constants.SUCCESSFUL;
+            else
+                return Constants.INCORRECT_PASSWORD;
+        }
+        else
+            return Constants.USER_NOT_FOUND;
+    }
+
+    public UserDataDTO getUserDetails(String email){
+        Optional<User> person = getUserByEmail(email);
+        if(person.isPresent())
+        {
+            User user = person.get();
+            return new UserDataDTO(user.getUsername(),user.getEmail());
+        }
+        else
+            return null;
     }
 }

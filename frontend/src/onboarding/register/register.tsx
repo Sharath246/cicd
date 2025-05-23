@@ -20,6 +20,7 @@ const Register = () => {
       });
 
       if (response.data === "Success") {
+        sessionStorage.setItem('user',email);
         navigate("/home");
       } else if (response.data === "Failed") {
         alert("Registration Failed");
