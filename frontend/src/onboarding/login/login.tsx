@@ -21,10 +21,11 @@ const Login = () => {
 
       const message = response.data;
 
-      if (message === "Login Successful") {
+      if (message === "Action Successful") {
+        sessionStorage.setItem('user',email);
         navigate("/home");
-      } else if (message === "Wrong Password") {
-        alert("Wrong Password");
+      } else if (message === "Wrong Password" || message === "User not found") {
+        alert(message);
       } else {
         alert("Unexpected response from server");
       }

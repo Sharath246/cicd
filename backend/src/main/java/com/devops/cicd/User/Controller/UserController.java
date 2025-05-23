@@ -1,5 +1,6 @@
 package com.devops.cicd.User.Controller;
 
+import com.devops.cicd.User.DTO.UserDataDTO;
 import org.springframework.web.bind.annotation.*;
 import com.devops.cicd.User.DTO.RegisterDTO;
 import com.devops.cicd.User.Service.UserService;
@@ -16,11 +17,8 @@ public class UserController {
 
     @GetMapping("/login")
     public ResponseEntity<String> login(@RequestHeader String email, @RequestHeader String password) {
-        if(service.login(email,password))
-            return ResponseEntity.ok("Login Successful");        
-        else
-            return ResponseEntity.status(201).body("Wrong Password");
-        
+        String response = service.login(email,password);
+        return ResponseEntity.status(200).body(response);
     }
 
     @PostMapping("/register")
@@ -30,6 +28,10 @@ public class UserController {
         else
             return ResponseEntity.status(501).body("Wrong Password");
     }
-    
+
+    @GetMapping("/getUserDetails")
+    public ResponseEntity<UserDataDTO> userDetails(@RequestHeader String email) {
+        return ResponseEntity.ok(service.getUserDetails(email));
+    }
     
 }
