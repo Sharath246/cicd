@@ -1,9 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from './redux/user.reducer.ts'
+import collaboratorReducer from './redux/collaborators.reducer.ts'
+import searchReducer from './redux/searchResults.redux.ts'
 
 export const AppStore = configureStore({
     reducer:{
-        user: userReducer
+        user: userReducer,
+        collaborator: collaboratorReducer,  
+        searchResults: searchReducer,
     }
 })
 
