@@ -1,9 +1,6 @@
 import { useEffect } from "react";
 import "./home.css";
-import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
-import { setUserData } from "../redux/user.reducer.ts";
-import { STATUS_SUCCESS } from "../utils/constants.ts";
 import { useNavigate } from "react-router-dom";
 import { HomeBody } from "./homebody.tsx";
 import { RootState } from "../store.ts";

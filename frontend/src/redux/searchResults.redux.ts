@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { STATUS_SUCCESS } from "../utils/constants.ts";
 
 type stateType = {
   peopleResults: any[];

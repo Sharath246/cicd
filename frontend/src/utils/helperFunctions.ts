@@ -1,15 +1,11 @@
-export function handleAutoComplete(
-  searchValue: string,
-  sendFunction: (
-    data: string | ArrayBufferLike | Blob | ArrayBufferView
-  ) => void
-) {
-  sendFunction(searchValue);
-}
+import { useDispatch } from "react-redux";
+import { setPeopleResults } from "../redux/searchResults.redux";
 
-export function handleWebsocketMessage(
-  populatePeople: (result: any[]) => void,
-  data: any[]
+const dispatch = useDispatch();
+
+export function handleAutoComplete(
+    e: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>,
+//   setOptions: React.Dispatch<React.SetStateAction<never[]>>
 ) {
-  populatePeople(data);
+    // dispatch(setPeopleResults())
 }

@@ -12,21 +12,15 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { styled, alpha } from "@mui/material/styles";
 import Menu from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
-import {
-  handleAutoComplete,
-  handleWebsocketMessage,
-} from "../../utils/helperFunctions.ts";
 import CloseIcon from "@mui/icons-material/Close";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store.ts";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import SearchResultScreen from "./searchResultScreen.tsx";
-import { searchStore } from "./searchStore.ts";
 import {
   setFilteredPeople,
   setPeopleResults,
 } from "../../redux/searchResults.redux.ts";
-import { SearchResultContext } from "../../context/searchResultContext.ts";
 import { setUserData } from "../../redux/user.reducer.ts";
 import { STATUS_SUCCESS } from "../../utils/constants.ts";
 import axios from "axios";

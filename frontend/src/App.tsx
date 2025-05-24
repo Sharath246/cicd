@@ -7,8 +7,6 @@ import { Dashboard } from "./home/dashboard/dashboard.tsx";
 import { Provider } from "react-redux";
 import { AppStore } from "./store.ts";
 import WorkSpace from "./workspace/workspace.tsx";
-import { SearchResultContext } from "./context/searchResultContext.ts";
-import { useRef, useEffect } from "react";
 
 function App() {
   return (
