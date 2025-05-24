@@ -1,6 +1,8 @@
 package com.devops.cicd.User.Controller;
 
+import com.devops.cicd.User.DTO.FriendRequestDTO;
 import com.devops.cicd.User.DTO.UserDataDTO;
+import com.devops.cicd.Utils.Constants;
 import org.springframework.web.bind.annotation.*;
 import com.devops.cicd.User.DTO.RegisterDTO;
 import com.devops.cicd.User.Service.UserService;
@@ -32,6 +34,15 @@ public class UserController {
     @GetMapping("/getUserDetails")
     public ResponseEntity<UserDataDTO> userDetails(@RequestHeader String email) {
         return ResponseEntity.ok(service.getUserDetails(email));
+    }
+
+    @PostMapping("/friendRequest")
+    public ResponseEntity<String> friendRequest(@RequestBody FriendRequestDTO request){
+        String response = service.friendRequest(request);
+        if(response.equals(Constants.SUCCESSFUL))
+            return ResponseEntity.ok(response);
+        else
+            return ResponseEntity.status(201).body(response);
     }
     
 }

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./register.css";
 
 const Register = () => {
-  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ const Register = () => {
 
     try {
       const response = await axios.post("http://localhost:8080/register", {
-        username: name,
+        username:username,
         email: email,
         password: password,
       });
@@ -39,10 +39,10 @@ const Register = () => {
         <h2>Register</h2>
         <input
           type="text"
-          placeholder="Name"
-          value={name}
+          placeholder="username"
+          value={username}
           required
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => setUsername(e.target.value)}
         />
         <input
           type="email"
@@ -60,7 +60,7 @@ const Register = () => {
         />
         <button type="submit">Register</button>
         <p style={{ textAlign: "center" }}>
-          Don't have an account? <a href="/register">Register</a>
+          Have an account? <a href="/login">Login</a>
         </p>
       </form>
     </div>
