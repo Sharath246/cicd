@@ -17,6 +17,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - run: pwd
     - run: cd frontend
     - run: pwd
     - name: Use Node.js ${{ matrix.node-version }}
