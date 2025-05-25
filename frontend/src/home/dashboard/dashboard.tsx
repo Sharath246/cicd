@@ -21,7 +21,7 @@ export const Dashboard = () =>{
               component="div"
               sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
             >
-              MUI
+              CICD APP
             </Typography>
           </Toolbar>
         </AppBar>
