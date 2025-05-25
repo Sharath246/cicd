@@ -38,7 +38,7 @@ const Home = () => {
     }
     if(status !== STATUS_SUCCESS)
     fetchUserData();
-  }, [dispatch, navigate]);
+  }, [dispatch, navigate, status]);
 
   return status === STATUS_SUCCESS ? (
     <div>
