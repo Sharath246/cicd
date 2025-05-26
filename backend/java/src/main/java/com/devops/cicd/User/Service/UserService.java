@@ -3,6 +3,8 @@ package com.devops.cicd.User.Service;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
 import com.devops.cicd.User.DTO.FriendRequestDTO;
 import com.devops.cicd.User.DTO.UserDataDTO;
 import com.devops.cicd.User.Entity.Friends;
@@ -74,5 +76,9 @@ public class UserService {
         catch(Exception e){
             return Constants.FAILED;
         }
+    }
+
+    public List<String> getAllPeople(){
+        return userRepo.findAll().stream().map(User::getUsername).toList();
     }
 }
