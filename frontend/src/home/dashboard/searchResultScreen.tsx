@@ -1,10 +1,11 @@
-import { Box, Button, ButtonGroup, styled } from "@mui/material";
+import { Avatar, Box, Button, ButtonGroup, styled } from "@mui/material";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { useState } from "react";
 import PillButton from "../../commonComponents/pillButton.tsx";
 import CloseIcon from "@mui/icons-material/Close";
 import Divider from "@mui/material/Divider";
+import AddIcon from "@mui/icons-material/Add";
 
 const ResultBox = styled(Box)({
   display: "flex",
@@ -15,17 +16,17 @@ const ResultBox = styled(Box)({
 });
 
 const SearchResultScreen = (props) => {
-  const people = useSelector(
-    (state: RootState) => state.searchResults.peopleResults
-  );
+  const people = useSelector((state: RootState) => {
+    return state.searchResults.filteredPeople;
+  });
   const workspaces = useSelector(
-    (state: RootState) => state.searchResults.workspaceResults
+    (state: RootState) => state.searchResults.filteredWorkspaces
   );
 
   const [seePeople, setSeePeople] = useState(true);
 
   return (
-    <Box sx={{ width: "100%", paddingTop:2 }}>
+    <Box sx={{ width: "100%", paddingTop: 2 }}>
       <Box
         sx={{
           display: "flex",
@@ -56,15 +57,19 @@ const SearchResultScreen = (props) => {
           </Button>
         </Box>
       </Box>
-      <Divider/>
+      <Divider />
       <ResultBox>
-        {seePeople
-          ? people.map((person) => (
-              <PersonBox key={person.name} name={person.name} />
-            ))
-          : workspaces.map((ws) => (
-              <WorkspaceBox key={ws.name} name={ws.name} />
-            ))}
+        {seePeople ? (
+          people.length > 0 ? (
+            people.map((person) => <PersonBox key={person} name={person} />)
+          ) : (
+            <>No Results</>
+          )
+        ) : workspaces.length > 0 ? (
+          workspaces.map((ws) => <WorkspaceBox key={ws} name={ws} />)
+        ) : (
+          <>No Results</>
+        )}
       </ResultBox>
     </Box>
   );
@@ -73,9 +78,33 @@ const SearchResultScreen = (props) => {
 export default SearchResultScreen;
 
 const PersonBox = (props) => {
-  return <PillButton buttonText={props.name} />;
+  return (
+    <PillButton
+      buttonText={props.name}
+      style={{
+        display: "flex",
+        width: "30%",
+        alignItems: "center",
+        justifyContent: "space-between",
+        backgroundColor: "#1976d2",
+        color: "#fff",
+        borderRadius: "50px",
+        px: 1,
+        py: 1,
+        boxShadow: 5,
+        cursor: "pointer",
+        marginBottom: 2,
+        transition: "background-color 0.3s ease",
+        "&:hover": {
+          backgroundColor: "#1565c0",
+        },
+      }}
+      primaryIcon={<Avatar>{props.user?.name[0] || "U"}</Avatar>}
+      secondaryIcon={<AddIcon sx={{ height: 28, width: 28 }} />}
+    />
+  );
 };
 
 const WorkspaceBox = (props) => {
-  return <PillButton buttonText={props.name} />;
+  return <Box>{props.name}</Box>;
 };

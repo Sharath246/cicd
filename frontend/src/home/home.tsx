@@ -13,50 +13,34 @@ const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const status: string = useSelector((state:RootState) => state.user.userFetchStatus);
-  const userData = useSelector((state: RootState) => state.user.user) as UserDataType | undefined;
+  const status: string = useSelector(
+    (state: RootState) => state.user.userFetchStatus
+  );
+  const userData = useSelector((state: RootState) => state.user.user) as
+    | UserDataType
+    | undefined;
 
   useEffect(() => {
-    if (!sessionStorage.getItem('user')) {
+    if (!sessionStorage.getItem("user")) {
       navigate("/login");
       return;
     }
-    async function fetchUserData() {
-      try {
-        const response = await axios.get(
-          "http://localhost:8080/getUserDetails",
-          {
-            headers: {
-              email: sessionStorage.getItem('user'),
-            },
-          }
-        );
-        console.log(response.data);
-        dispatch(setUserData(response.data));
-      } catch (error) {
-        console.error("Failed to fetch user data", error);
-      }
-    }
-    if(status !== STATUS_SUCCESS)
-    fetchUserData();
-  }, [dispatch, navigate, status]);
+  }, [navigate]);
 
-  return status === STATUS_SUCCESS ? (
+  return (
     <div>
-      <Heading name={userData?.name ?? ""}/>
-      <HomeBody/>
+      <Heading name={userData?.name ?? ""} />
+      <HomeBody />
     </div>
-  ) : (
-    <>Loading Data...</>
   );
 };
 
 export default Home;
 
-const Heading = ({name}) =>{
-  return(
-    <div style={{width:"100%",textAlign:"center",fontSize:"2rem"}}>
+const Heading = ({ name }) => {
+  return (
+    <div style={{ width: "100%", textAlign: "center", fontSize: "2rem" }}>
       Hello {name}
     </div>
-  )
-}
+  );
+};

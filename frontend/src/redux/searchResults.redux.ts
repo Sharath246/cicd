@@ -3,12 +3,16 @@ import { STATUS_SUCCESS } from "../utils/constants.ts";
 
 type stateType = {
   peopleResults: any[];
+  filteredPeople: any[];
   workspaceResults: any[];
+  filteredWorkspaces: any[];
 };
 
 const initialState: stateType = {
   peopleResults: [],
+  filteredPeople: [],
   workspaceResults: [],
+  filteredWorkspaces: [],
 };
 
 const searchSlice = createSlice({
@@ -16,14 +20,25 @@ const searchSlice = createSlice({
   initialState,
   reducers: {
     setPeopleResults: (state, action: { payload: any[] }) => {
-      state.peopleResults.push(...action.payload);
+      state.peopleResults = action.payload;
     },
     setworkspaceResults: (state, action: { payload: any[] }) => {
       state.workspaceResults = action.payload;
     },
+    setFilteredPeople: (state, action: { payload: any[] }) => {
+      state.filteredPeople = action.payload;
+    },
+    setFilteredWorkspaces: (state, action: { payload: any[] }) => {
+      state.filteredWorkspaces = action.payload;
+    },
   },
 });
 
-export const { setPeopleResults, setworkspaceResults } = searchSlice.actions;
+export const {
+  setPeopleResults,
+  setworkspaceResults,
+  setFilteredPeople,
+  setFilteredWorkspaces,
+} = searchSlice.actions;
 
 export default searchSlice.reducer;

@@ -21,6 +21,7 @@ import {
   addcollaborators,
   setcollaborators,
 } from "../redux/collaborators.reducer.ts";
+import AddIcon from "@mui/icons-material/Add";
 
 const bull = (
   <Box
@@ -45,7 +46,7 @@ export function HomeBody() {
         minHeight: "100vh",
         position: "relative",
       }}
-    > 
+    >
       {[1, 2, 3, 4, 5].map((item) => (
         <Card
           key={item}
@@ -92,6 +93,27 @@ export function HomeBody() {
       <PillButton
         onClick={() => setOpenWorkSpaceModal(true)}
         buttonText={"Create Workspace"}
+        style={{
+          position: "fixed",
+          bottom: 24,
+          right: 24,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: "#1976d2",
+          color: "#fff",
+          borderRadius: "50px",
+          px: 3,
+          py: 1,
+          boxShadow: 5,
+          cursor: "pointer",
+          gap: 1,
+          transition: "background-color 0.3s ease",
+          "&:hover": {
+            backgroundColor: "#1565c0",
+          },
+        }}
+        primaryIcon={<AddIcon sx={{ height: 28, width: 28 }} />}
       />
 
       <Dialog
