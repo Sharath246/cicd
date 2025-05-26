@@ -8,6 +8,8 @@ import com.devops.cicd.User.DTO.RegisterDTO;
 import com.devops.cicd.User.Service.UserService;
 import org.springframework.http.ResponseEntity;
 
+import java.util.List;
+
 @RestController
 public class UserController {
 
@@ -43,6 +45,11 @@ public class UserController {
             return ResponseEntity.ok(response);
         else
             return ResponseEntity.status(201).body(response);
+    }
+
+    @GetMapping("/getAllPeople")
+    public ResponseEntity<List<String>> getAllPeople(){
+        return ResponseEntity.ok(service.getAllPeople());
     }
     
 }

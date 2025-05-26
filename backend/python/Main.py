@@ -1,8 +1,7 @@
-from Database import connect_to_DB, get_all, update_column, get_column, execute_sql
-from threading import Timer,Lock
-import json
+from Database import connect_to_DB,execute_sql
+from threading import Lock
 from friends import collect_people_data, get_filtered_people
-from fastapi import FastAPI, WebSocket, Request
+from fastapi import FastAPI, WebSocket
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -30,6 +29,7 @@ async def get_all_people(websocket: WebSocket):
     await websocket.accept()
     while True:
         data = await websocket.receive_text()
+        print(data)
         response = get_filtered_people(people_data,data)
         await websocket.send_json(response)
 
