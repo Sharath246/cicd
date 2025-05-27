@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./login.css";
@@ -54,6 +54,9 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <button type="submit">Login</button>
+        <p style={{ textAlign: "center" }}>
+          Don't have an account? <a href="/register">Register</a>
+        </p>
       </form>
     </div>
   );
