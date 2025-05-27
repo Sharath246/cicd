@@ -22,8 +22,6 @@ const Home = () => {
       navigate("/login");
       return;
     }
-  }, [navigate]);
-
   return (
     <div>
       <Heading name={userData?.name ?? ""} />
