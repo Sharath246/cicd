@@ -71,6 +71,7 @@ public class UserService {
         try{
             Friends friend = new Friends(request.user(),request.friend(),Constants.FRIEND_REQUEST_AWAIT,new Date());
             friendRepo.save(friend);
+            System.out.println("hello");
             return Constants.SUCCESSFUL;
         }
         catch(Exception e){
